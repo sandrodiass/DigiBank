@@ -140,6 +140,7 @@ namespace DigiBank.Classes
                     TelaSaldo(pessoa);
                     break;
                 case 4:
+                    TelaExtrato(pessoa);
                     break;
                 case 5:
                     TelaPrincipal();
@@ -215,12 +216,20 @@ namespace DigiBank.Classes
             if (pessoa.Conta.extrato().Any()) 
             {
                 double total = pessoa.Conta.extrato().Sum(x => x.Valor);
-
+                foreach(Extrato extrato in pessoa.Conta.extrato())
+                {
+                    Console.WriteLine($"                                                                                   ");
+                    Console.WriteLine($"             DATA DA  MOVIMENTAÇÃO :   {extrato.Data.ToString("dd/mm/yyyy HH:mm:ss")}         ");
+                    Console.WriteLine($"             TIPO DE MOVIMENTAÇÃO :   {extrato.Descricao}         ");
+                    Console.WriteLine($"             Valor :   {extrato.Valor}         ");
+                    Console.WriteLine("        ==============================            ");
+                }
                 Console.WriteLine("                                                   ");
                 Console.WriteLine("                                                       ");
                 Console.WriteLine($"              Sub total :   {total}         ");
                 Console.WriteLine("        ==============================            ");
             }
+
             
             else
             { 
